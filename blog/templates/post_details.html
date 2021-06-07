@@ -11,5 +11,21 @@
         <a href="{% url 'post_edit' post.pk %}" class="update">Edit Post</a>
         <a href="{% url 'post_delete' post.pk %}" class="delete">Delete Post</a>
     </div>
+
+    <div class="comment-section">
+        <h1>Comments...</h1>
+        {% if not post.comments.all %}
+            No Comments...
+            <a href="#">Add one</a>
+        {% else %}
+            {% for comment in post.comments.all %}
+                <strong>
+                    {{ comment.name }}
+                </strong>
+                <br/>
+                {{ comment.body }}
+            {% endfor %}
+        {% endif %}
+    </div>
     
 {% endblock %}
